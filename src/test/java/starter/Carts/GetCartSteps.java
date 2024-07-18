@@ -14,12 +14,13 @@ public class GetCartSteps {
     CartAPI cartAPI;
     @Given("Set path for get from cart")
     public void setPathForGetFromCart() {
-        SerenityRest.when().get(CartAPI.CARTS);
+        cartAPI.Getcarts();
     }
 
     @When("Send request to get carts")
     public void sendRequestToGetCarts() {
-        SerenityRest.given().header("Authorization","Ba");
+
+        SerenityRest.when().get(CartAPI.CARTS);
     }
 
 

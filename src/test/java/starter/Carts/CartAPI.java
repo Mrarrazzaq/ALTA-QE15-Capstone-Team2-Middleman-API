@@ -25,4 +25,10 @@ public class CartAPI {
         SerenityRest.given().contentType(ContentType.JSON).body(json);
     }
 
+    @Step("Update cart")
+    public void Updatecarts(int id, File json){
+        SerenityRest.given().header("Authorization","Bearer" + AuthStepsdef.token);
+        SerenityRest.given().pathParam("id",id).contentType(ContentType.JSON).body(json);
+    }
+
 }
