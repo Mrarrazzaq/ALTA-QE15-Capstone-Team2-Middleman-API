@@ -36,5 +36,11 @@ public class CartAPI {
         SerenityRest.given().header("Authorization","Bearer" + AuthStepsdef.token);
         SerenityRest.given().pathParam("id",id);
     }
+    @Step("Post crate order")
+    public void Postorder(File json){
+        SerenityRest.given().header("Authorization","Bearer" + AuthStepsdef.token);
+        SerenityRest.given().contentType(ContentType.JSON).body(json);
+    }
+
 
 }
