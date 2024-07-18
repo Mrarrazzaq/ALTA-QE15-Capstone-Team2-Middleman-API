@@ -31,4 +31,10 @@ public class CartAPI {
         SerenityRest.given().pathParam("id",id).contentType(ContentType.JSON).body(json);
     }
 
+    @Step("Delete cart")
+    public void Deletecart(int id){
+        SerenityRest.given().header("Authorization","Bearer" + AuthStepsdef.token);
+        SerenityRest.given().pathParam("id",id);
+    }
+
 }

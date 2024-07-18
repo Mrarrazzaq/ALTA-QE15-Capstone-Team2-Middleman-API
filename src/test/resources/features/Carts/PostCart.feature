@@ -7,6 +7,7 @@ Scenario Outline:Post create new carts with valid data
   |filename|
   |createcart.json|
 
+  #Negative
   Scenario Outline:Post create new carts with invalid data symbols in "product_id"
     Given create add new cart with file json "<filename>"
     When send request post add new chart
