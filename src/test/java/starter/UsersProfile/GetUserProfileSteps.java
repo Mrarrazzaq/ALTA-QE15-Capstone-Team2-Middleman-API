@@ -42,4 +42,25 @@ public class GetUserProfileSteps {
                 .assertThat()
                 .body(JsonSchemaValidator.matchesJsonSchema(fileJson));
     }
+
+    @Given("Set path for get user profile {string}")
+    public void setPathForGetUserProfile(String id) {
+        SerenityRest.given()
+                .pathParam("id", id)
+                .header("accept", "application/json")
+                .header("Authorization", "Bearer " + Constants.TOKEN_USER);
+    }
+
+    @And("Send request to get user profiles")
+    public void sendRequestToGetUserProfiles() {
+        SerenityRest.when()
+                .get(middlemanAPI.USER_PROFILE);
+        if (SerenityRest.then().extract().statusCode() != 200) {
+            System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
+        }
+    }
+
+    @Given("Set path for get user profiles")
+    public void setPathForGetUserProfiles() {
+    }
 }
