@@ -1,4 +1,4 @@
-package starter.Carts;
+package starter.Orders;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,22 +9,25 @@ import starter.Carts.CartAPI;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
 
-public class DeleteCartSteps {
+import java.io.File;
+
+public class PostOrderSteps {
     @Steps
-    CartAPI cartAPI;
+    OrdersAPI ordersAPI;
     MiddlemanAPI middlemanAPI;
-
-    @Given("Delete cart with id {int}")
-    public void deleteCartWithId(int idproduct) {
-        cartAPI.Deletecart(idproduct);
+    @Given("create add new order with file json {string}")
+    public void createAddNewOrderWithFileJson(String filename) {
+        File jsonfile = new File(Constants.REQ_BODY+filename);
+        ordersAPI.Postorderuser(jsonfile);
     }
-
-    @When("send request delete cart")
-    public void sendRequestDeleteCart() {
-        SerenityRest.when().delete(middlemanAPI.CARTS_ID);
+    @When("send request post add new order")
+    public void sendRequestPostAddNewOrder() {
+        SerenityRest.when().post(middlemanAPI.ORDERS);
         if (SerenityRest.then().extract().statusCode() != 200) {
             System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
         }
     }
+
+
 
 }

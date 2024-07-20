@@ -113,6 +113,17 @@
             <version>2.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.networknt/json-schema-validator -->
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>1.0.57</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.3.0</version> <!-- Sesuaikan dengan versi terbaru -->
+        </dependency>
     </dependencies>
     <build>
         <plugins>

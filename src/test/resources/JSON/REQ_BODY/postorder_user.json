@@ -1,0 +1,19 @@
+{
+  "grand_total": 10,
+  "items": [
+    {
+      "product_id": 1,
+      "product_name": "beras kencur",
+      "qty": 10,
+      "unit": "kg",
+      "subtotal": 92000
+    },
+    {
+      "product_id": 2,
+      "product_name": "chimory",
+      "qty": 5,
+      "unit": "kg",
+      "subtotal": 45000
+    }
+  ]
+}

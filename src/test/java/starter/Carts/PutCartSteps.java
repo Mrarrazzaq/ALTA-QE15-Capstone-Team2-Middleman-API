@@ -5,7 +5,8 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
-import utils.Constants;
+import starter.MiddlemanAPI.MiddlemanAPI;
+import starter.utils.Constants;
 
 import java.io.File;
 
@@ -13,6 +14,7 @@ public class PutCartSteps {
 
     @Steps
     CartAPI cartAPI;
+    MiddlemanAPI middlemanAPI;
 
     @Given("update cart with parameter id product {int} file json {string}")
     public void updateCartWithParameterIdProductFileJson(int cart, String jsonfile) {
@@ -21,7 +23,7 @@ public class PutCartSteps {
     }
     @When("send request update chart")
     public void sendRequestUpdateChart() {
-        SerenityRest.when().put(CartAPI.CARTS_ID);
+        SerenityRest.when().put(middlemanAPI.CARTS_ID);
     }
 
 
