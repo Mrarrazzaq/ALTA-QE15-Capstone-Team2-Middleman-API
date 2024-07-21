@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import net.serenitybdd.rest.SerenityRest;
 import starter.MiddlemanAPI.MiddlemanAPI;
+import starter.utils.Constants;
 
 public class LoginUserSteps {
 
@@ -27,5 +28,12 @@ public class LoginUserSteps {
     public void userClickLoginButton() {
         SerenityRest.when()
                 .post(middlemanAPI.LOGIN);
+    }
+
+    @And("status code user should be {int}")
+    public void statusCodeUserShouldBe(int Expected) {
+        SerenityRest.then().statusCode(Expected);
+        String tokenUser = SerenityRest.then().extract().jsonPath().getString("data.token");
+        System.out.println(tokenUser);
     }
 }
