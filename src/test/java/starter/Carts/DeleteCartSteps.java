@@ -13,6 +13,7 @@ public class DeleteCartSteps {
     @Steps
     CartAPI cartAPI;
     MiddlemanAPI middlemanAPI;
+
     @Given("Delete cart with id {int}")
     public void deleteCartWithId(int idproduct) {
         cartAPI.Deletecart(idproduct);
