@@ -5,5 +5,5 @@ Feature: Post order
     When send request post add new order
     Then Status code should be 201
     Examples:
-    |filename               |
-    |postorder_user.json    |
+      | filename            |
+      | postorder_user.json |

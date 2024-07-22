@@ -3,17 +3,17 @@ package starter.Authentication;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import net.serenitybdd.rest.SerenityRest;
-import org.junit.Assert;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
 import java.io.File;
+//import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.module.jsv.JsonSchemaValidator;
-import net.serenitybdd.rest.SerenityRest;
-
 
 public class LoginAdminSteps {
-    Constants constants;
+    public static String TOKEN_ADMIN;
     MiddlemanAPI middlemanAPI;
 
     @Given("Set path for login admin")
@@ -32,22 +32,25 @@ public class LoginAdminSteps {
 
     @And("Admin click login button")
     public void adminClickLoginButton() {
-        SerenityRest.when()
-                .post(middlemanAPI.LOGIN);
+        Response response = SerenityRest.when().post(MiddlemanAPI.LOGIN);
+        JsonPath jsonPathEvaluator = response.jsonPath();
+        TOKEN_ADMIN = jsonPathEvaluator.get("data.token");
+        if (SerenityRest.then().extract().statusCode() != 200) {
+            System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
+        }
     }
 
     @And("status code should be {int}")
     public void statusCodeShouldBe(int Expected) {
         SerenityRest.then().statusCode(Expected);
-//        int Actual = SerenityRest.then().extract().statusCode();
-//        Assert.assertEquals(Expected, Actual);
-
+        String tokenAdmin = SerenityRest.then().extract().jsonPath().getString("data.token");
+        System.out.println(tokenAdmin);
     }
 
     @Then("validate JSON schema {string}")
     public void validateJSONSchema(String file) {
         File fileJson = new File(Constants.JSON_SCHEMA + file);
-        SerenityRest.then()
+        SerenityRest.and()
                 .assertThat()
                 .body(JsonSchemaValidator.matchesJsonSchema(fileJson));
 

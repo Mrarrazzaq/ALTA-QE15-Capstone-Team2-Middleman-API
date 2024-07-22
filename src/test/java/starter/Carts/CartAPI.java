@@ -3,6 +3,7 @@ package starter.Carts;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
+import starter.Authentication.LoginUserSteps;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
 import java.io.File;
@@ -15,7 +16,7 @@ public class CartAPI {
     public void Getcarts(){
         SerenityRest.given()
                 .header("accept", "application/json")
-                .header("Authorization","Bearer " + Constants.TOKEN_USER);
+                .header("Authorization","Bearer " + LoginUserSteps.TOKEN_USER);
     }
 
     @Step("Post crate cart")
@@ -23,7 +24,7 @@ public class CartAPI {
         SerenityRest.given()
                 .header("accept", "application/json")
                 .contentType(ContentType.JSON)
-                .header("Authorization","Bearer " + Constants.TOKEN_USER)
+                .header("Authorization","Bearer " +LoginUserSteps.TOKEN_USER)
                 .body(json);
     }
 
@@ -32,7 +33,7 @@ public class CartAPI {
 
         SerenityRest.given()
                 .given().pathParam("id",id)
-                .header("Authorization","Bearer " + Constants.TOKEN_USER)
+                .header("Authorization","Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType(ContentType.JSON)
                 .body(json);
     }
@@ -41,7 +42,7 @@ public class CartAPI {
     public void Deletecart(int id){
         SerenityRest.given()
                 .pathParam("id",id)
-                .header("Authorization","Bearer " + Constants.TOKEN_USER);
+                .header("Authorization","Bearer " + LoginUserSteps.TOKEN_USER);
     }
     @Step("Post crate order")
     public void Postorder(File json){

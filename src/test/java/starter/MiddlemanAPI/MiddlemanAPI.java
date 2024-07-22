@@ -46,5 +46,4 @@ public class MiddlemanAPI {
     public static String ADMINS_INVENTORY_ID = Constants.BASE_URL + "admins/inventory/{id}";
 
 
-
 }

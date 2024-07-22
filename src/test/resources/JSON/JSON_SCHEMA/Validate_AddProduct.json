@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "integer"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "product_image": {
+          "type": "string"
+        },
+        "product_name": {
+          "type": "string"
+        },
+        "stock": {
+          "type": "integer"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "price",
+        "product_image",
+        "product_name",
+        "stock",
+        "unit"
+      ]
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "code",
+    "data",
+    "message"
+  ]
+}
