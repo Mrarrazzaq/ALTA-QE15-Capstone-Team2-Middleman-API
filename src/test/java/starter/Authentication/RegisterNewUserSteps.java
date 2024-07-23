@@ -32,6 +32,9 @@ public class RegisterNewUserSteps {
     public void userClickRegisterButton() {
         SerenityRest.when()
                 .post(middlemanAPI.REGISTER);
+        if (SerenityRest.then().extract().statusCode() != 200) {
+            System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
+        }
     }
 
     @Then("validate body response {string}")

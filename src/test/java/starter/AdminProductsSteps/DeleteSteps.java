@@ -3,6 +3,7 @@ package starter.Carts;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
+import starter.Authentication.LoginAdminSteps;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
 
@@ -12,7 +13,7 @@ public class DeleteSteps {
         SerenityRest
                 .given()
                 .pathParam("IntIdProduct", IntIdProduct)
-                .header("Authorization","Bearer " + Constants.TOKEN_ADMIN);
+                .header("Authorization","Bearer " + LoginAdminSteps.TOKEN_ADMIN);
     }
 
     @When("Send request to delete admin product")

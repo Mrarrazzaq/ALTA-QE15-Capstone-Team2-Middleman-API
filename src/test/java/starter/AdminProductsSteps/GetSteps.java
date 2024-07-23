@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.rest.SerenityRest;
+import starter.Authentication.LoginAdminSteps;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
 
@@ -12,7 +13,7 @@ public class GetSteps {
     public void setPathForGetAdminProducts() {
         SerenityRest
                 .given()
-                .header("Authorization", "Bearer " + Constants.TOKEN_ADMIN);
+                .header("Authorization", "Bearer " + LoginAdminSteps.TOKEN_ADMIN);
     }
 
     @When("send request to get admin products")
@@ -26,7 +27,7 @@ public class GetSteps {
     public void setPathForGetAdminProductsName(String stringNamProduct) {
         SerenityRest
                 .given()
-                .header("Authorization", "Bearer " + Constants.TOKEN_ADMIN)
+                .header("Authorization", "Bearer " + LoginAdminSteps.TOKEN_ADMIN)
                 .pathParam("stringNamProduct", stringNamProduct);
     }
 

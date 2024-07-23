@@ -5,8 +5,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import net.serenitybdd.rest.SerenityRest;
 import org.junit.Assert;
+import starter.Authentication.LoginUserSteps;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
+import starter.utils.TokenReader;
 
 import java.io.File;
 
@@ -15,14 +17,14 @@ public class UserProductSteps {
     MiddlemanAPI middlemanAPI;
     @Given("Set path for get user products")
     public void setPathForGetUserProducts() {
-        SerenityRest.given()
-                .header("Authorization", "Bearer " + Constants.TOKEN_USER);
+            SerenityRest.given()
+                    .header("Authorization", "Bearer " + TokenReader.getTokenUser());
     }
 
     @And("Send request to get user products")
     public void sendRequestToGetUserProducts() {
         SerenityRest.when()
-                .get(middlemanAPI.USER_PRODUCT);
+                .get(MiddlemanAPI.USER_PRODUCT);
         if (SerenityRest.then().extract().statusCode() != 404) {
             System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
         }
@@ -40,7 +42,7 @@ public class UserProductSteps {
     public void setPathForGetProductBySearchProductName(String stringNamProduct) {
         SerenityRest.given()
                 .pathParam("stringNamProduct", stringNamProduct)
-                .header("Authorization", "Bearer " + Constants.TOKEN_USER);
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER);
 
     }
 
@@ -54,9 +56,9 @@ public class UserProductSteps {
     public void setPathForAddProductAndInsertProductData() {
         File fileImage = new File(Constants.IMAGE_FOLDER + "Gambar1.png");
         SerenityRest.given()
-                .header("Authorization", "Bearer " + Constants.TOKEN_USER)
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType("multipart/form-data")
-                .multiPart("product_name", "Batu Aquarium")
+                .multiPart("product_name", "Batu Kalii")
                 .multiPart("unit", "kg")
                 .multiPart("stock", "1000")
                 .multiPart("price", "1500")
@@ -72,9 +74,9 @@ public class UserProductSteps {
     @Given("Set path for add product and insert incomplete product data")
     public void setPathForAddProductAndInsertIncompleteProductData() {
         SerenityRest.given()
-                .header("Authorization", "Bearer " + Constants.TOKEN_USER)
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType("multipart/form-data")
-                .multiPart("product_name", "Batu Aquarium")
+                .multiPart("product_name", "Batu Aquarium Kecil")
                 .multiPart("unit", "kg")
                 .multiPart("stock", "1000")
                 .multiPart("price", "1500");
@@ -86,7 +88,7 @@ public class UserProductSteps {
         SerenityRest
                 .given()
                 .pathParam("IntIdProduct", IntIdProduct)
-                .header("Authorization", "Bearer " + Constants.TOKEN_USER)
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType("multipart/form-data")
                 .multiPart("product_name", "Product ini di update")
                 .multiPart("unit", "kg")
@@ -100,6 +102,9 @@ public class UserProductSteps {
         SerenityRest
                 .when()
                 .put(middlemanAPI.USER_UPDATE_PRODUCT);
+        if (SerenityRest.then().extract().statusCode() != 200) {
+            System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
+        }
     }
 
     @Then("Response body should be {string}")
@@ -113,7 +118,7 @@ public class UserProductSteps {
         SerenityRest
                 .given()
                 .pathParam("IntIdProduct", IntIdProduct)
-                .header("Authorization", "Bearer " + Constants.TOKEN_USER);
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER);
     }
 
     @And("Send request to delete product")

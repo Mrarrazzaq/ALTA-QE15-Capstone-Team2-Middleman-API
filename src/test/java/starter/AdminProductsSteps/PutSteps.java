@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.rest.SerenityRest;
+import starter.Authentication.LoginAdminSteps;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
 
@@ -14,7 +15,7 @@ public class PutSteps {
     public void setPathForUpdateProduct() {
         SerenityRest
                 .given()
-                .header("Authorization", "Bearer " + Constants.TOKEN_ADMIN);
+                .header("Authorization", "Bearer " + LoginAdminSteps.TOKEN_ADMIN);
     }
 
     @And("Send request update product")
@@ -22,6 +23,9 @@ public class PutSteps {
         SerenityRest
                 .when()
                 .put(MiddlemanAPI.ADMIN_UPDATEorDELETE_PRODUCT);
+        if (SerenityRest.then().extract().statusCode() != 200) {
+            System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
+        }
     }
 
     @Given("Set path for admin update product with parameter id {int}")
@@ -30,7 +34,7 @@ public class PutSteps {
         SerenityRest
                 .given()
                 .pathParam("IntIdProduct", IntIdProduct)
-                .header("Authorization", "Bearer " + Constants.TOKEN_ADMIN)
+                .header("Authorization", "Bearer " + LoginAdminSteps.TOKEN_ADMIN)
                 .contentType("multipart/form-data")
                 .multiPart("product_name", "Vacum")
                 .multiPart("unit", "pcs")

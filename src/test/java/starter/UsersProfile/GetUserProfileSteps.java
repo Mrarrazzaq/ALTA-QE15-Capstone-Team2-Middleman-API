@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
+import starter.Authentication.LoginUserSteps;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
 import io.restassured.http.ContentType;
@@ -19,7 +20,7 @@ public class GetUserProfileSteps {
     public void setPathForGetUserProfile() {
         SerenityRest.given()
                 .header("accept", "application/json")
-                .header("Authorization", "Bearer " + Constants.TOKEN_USER);
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER);
     }
 
     @And("Send request to get user profile")
@@ -33,7 +34,7 @@ public class GetUserProfileSteps {
 
     @And("Status code should {int}")
     public void statusCodeShould(int code) {
-        SerenityRest.then().statusCode(code);
+        SerenityRest.and().statusCode(code);
     }
 
     @Then("Validate JSON schema {string}")
@@ -49,38 +50,52 @@ public class GetUserProfileSteps {
         SerenityRest.given()
                 .pathParam("id", id)
                 .header("accept", "application/json")
-                .header("Authorization", "Bearer " + Constants.TOKEN_USER);
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER);
     }
 
     @And("Send request to get user profiles")
     public void sendRequestToGetUserProfiles() {
         SerenityRest.when()
                 .get(middlemanAPI.USER_PROFILE);
-        if (SerenityRest.then().extract().statusCode() != 200) {
+        if (SerenityRest.then().extract().statusCode() != 400) {
             System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
         }
     }
 
     @Given("Set path for get user profiles")
     public void setPathForGetUserProfiles() {
-        SerenityRest.given()
-                .header("accept", "application/json");
     }
 
     @Given("Set path for update user profile file json {string}")
-    public void setPathForUpdateUserProfileFileJson(String fileJson) {
-        File file = new File(Constants.REQ_BODY + fileJson);
+    public void setPathForUpdateUserProfileFileJson(String fileName) {
+        File file = new File(Constants.REQ_BODY + fileName);
         SerenityRest.given()
-                .header("accept", "application/json")
-                .header("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MjIsIlJvbGUiOiJ1c2VyIiwiZXhwIjoxNzIxNjAzMzEyfQ.cwuTOOCg3V-CiWwBLG8fUopOsHAfC3-CvwlBSQTWsdw")
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType(ContentType.JSON)
                 .body(file);
     }
 
     @When("send request update user profile")
     public void sendRequestUpdateUserProfile() {
-        SerenityRest
-                .when()
+        SerenityRest.when()
                 .put(middlemanAPI.USER_PROFILE);
+        if (SerenityRest.then().extract().statusCode() != 200) {
+            System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
+        }
+    }
+
+    @Given("Set path for delete user")
+    public void setPathForDeleteUser() {
+        SerenityRest.given()
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER);
+    }
+
+    @And("Send request to delete user")
+    public void sendRequestToDeleteUser() {
+        SerenityRest.when()
+                .delete(middlemanAPI.USER_PROFILE);
+        if (SerenityRest.then().extract().statusCode() != 200) {
+            System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
+        }
     }
 }

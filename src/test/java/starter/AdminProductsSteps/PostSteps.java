@@ -3,6 +3,7 @@ package starter.Carts;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
+import starter.Authentication.LoginAdminSteps;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
 
@@ -26,9 +27,9 @@ public class PostSteps {
     public void setPathForAddAdminProductAndInsertProductData() {
         File fileImage = new File(Constants.IMAGE_FOLDER + "Gambar1.png");
         SerenityRest.given()
-                .header("Authorization", "Bearer " + Constants.TOKEN_ADMIN)
+                .header("Authorization", "Bearer " + LoginAdminSteps.TOKEN_ADMIN)
                 .contentType("multipart/form-data")
-                .multiPart("product_name", "Batu Galaxy")
+                .multiPart("product_name", "Batuuu")
                 .multiPart("unit", "kg")
                 .multiPart("stock", "1000")
                 .multiPart("price", "1500")
@@ -38,7 +39,7 @@ public class PostSteps {
     @Given("Set path for add product and insert invalid product data")
     public void setPathForAddProductAndInsertInvalidProductData() {
         SerenityRest.given()
-                .header("Authorization", "Bearer " + Constants.TOKEN_ADMIN)
+                .header("Authorization", "Bearer " + LoginAdminSteps.TOKEN_ADMIN)
                 .contentType("multipart/form-data")
                 .multiPart("product_name", "Batu Aquarium")
                 .multiPart("unit", "kg")
