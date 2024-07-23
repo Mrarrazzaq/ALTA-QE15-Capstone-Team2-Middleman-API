@@ -58,7 +58,7 @@ public class UserProductSteps {
         SerenityRest.given()
                 .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType("multipart/form-data")
-                .multiPart("product_name", "Batu Kalii")
+                .multiPart("product_name", "Batu Kaliiii")
                 .multiPart("unit", "kg")
                 .multiPart("stock", "1000")
                 .multiPart("price", "1500")

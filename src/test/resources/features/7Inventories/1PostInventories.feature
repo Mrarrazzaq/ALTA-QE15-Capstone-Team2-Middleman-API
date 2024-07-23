@@ -1,3 +1,4 @@
+@Tests
 Feature: Post inventories
 
   #Positive User (Shop) 400

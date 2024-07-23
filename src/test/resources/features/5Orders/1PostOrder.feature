@@ -1,3 +1,4 @@
+@Tests
 Feature: Post order
   #internal server error
   Scenario Outline: Create new orders with valid data
