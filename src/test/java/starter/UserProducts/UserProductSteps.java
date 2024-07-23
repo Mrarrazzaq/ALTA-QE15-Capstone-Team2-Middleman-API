@@ -8,6 +8,7 @@ import org.junit.Assert;
 import starter.Authentication.LoginUserSteps;
 import starter.MiddlemanAPI.MiddlemanAPI;
 import starter.utils.Constants;
+import starter.utils.TokenReader;
 
 import java.io.File;
 
@@ -16,8 +17,8 @@ public class UserProductSteps {
     MiddlemanAPI middlemanAPI;
     @Given("Set path for get user products")
     public void setPathForGetUserProducts() {
-        SerenityRest.given()
-                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER);
+            SerenityRest.given()
+                    .header("Authorization", "Bearer " + TokenReader.getTokenUser());
     }
 
     @And("Send request to get user products")
@@ -57,7 +58,7 @@ public class UserProductSteps {
         SerenityRest.given()
                 .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType("multipart/form-data")
-                .multiPart("product_name", "Batu Aquarium")
+                .multiPart("product_name", "Batu Kalii")
                 .multiPart("unit", "kg")
                 .multiPart("stock", "1000")
                 .multiPart("price", "1500")
@@ -75,7 +76,7 @@ public class UserProductSteps {
         SerenityRest.given()
                 .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType("multipart/form-data")
-                .multiPart("product_name", "Batu Aquarium")
+                .multiPart("product_name", "Batu Aquarium Kecil")
                 .multiPart("unit", "kg")
                 .multiPart("stock", "1000")
                 .multiPart("price", "1500");

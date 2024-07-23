@@ -3,4 +3,4 @@ Feature: Update Product data by Admin
     Given Set path for admin update product with parameter id 2
     And Send request update product
     And Status code should be 200
-    Then Response body should be "PesanResponse"
+    Then Response body should be "success update data"

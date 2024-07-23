@@ -70,7 +70,6 @@ public class GetUserProfileSteps {
     public void setPathForUpdateUserProfileFileJson(String fileName) {
         File file = new File(Constants.REQ_BODY + fileName);
         SerenityRest.given()
-                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType(ContentType.JSON)
                 .body(file);
     }
