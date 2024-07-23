@@ -1,3 +1,4 @@
+@Tests
 Feature: Get User Products Feature
 
   Scenario: User able to get user products

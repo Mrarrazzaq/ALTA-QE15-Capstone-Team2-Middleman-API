@@ -29,7 +29,7 @@ public class PostSteps {
         SerenityRest.given()
                 .header("Authorization", "Bearer " + LoginAdminSteps.TOKEN_ADMIN)
                 .contentType("multipart/form-data")
-                .multiPart("product_name", "Batuu")
+                .multiPart("product_name", "Batuuu")
                 .multiPart("unit", "kg")
                 .multiPart("stock", "1000")
                 .multiPart("price", "1500")

@@ -1,3 +1,4 @@
+@Tests
 Feature: Add Product Feature
 
   Scenario: Add product by user

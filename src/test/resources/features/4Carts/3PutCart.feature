@@ -1,3 +1,4 @@
+@Tests
 Feature: Put Cart
 
   Scenario Outline: Put update quantity product with valid data

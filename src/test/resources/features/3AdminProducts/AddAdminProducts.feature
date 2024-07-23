@@ -1,4 +1,4 @@
-#Steps belum dibuat
+@Tests
 Feature: Add Admin Products
 
   Scenario: Admin able to add new product

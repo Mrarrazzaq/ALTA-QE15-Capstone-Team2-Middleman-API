@@ -23,6 +23,9 @@ public class PutSteps {
         SerenityRest
                 .when()
                 .put(MiddlemanAPI.ADMIN_UPDATEorDELETE_PRODUCT);
+        if (SerenityRest.then().extract().statusCode() != 200) {
+            System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
+        }
     }
 
     @Given("Set path for admin update product with parameter id {int}")

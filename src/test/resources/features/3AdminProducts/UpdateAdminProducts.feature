@@ -1,3 +1,4 @@
+@Tests
 Feature: Update Product data by Admin
   Scenario: Admin able to update product data
     Given Set path for admin update product with parameter id 2

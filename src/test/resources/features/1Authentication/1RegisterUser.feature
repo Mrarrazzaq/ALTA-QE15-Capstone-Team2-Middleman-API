@@ -1,3 +1,4 @@
+@Tests
 Feature: Register new user
 
   Scenario: User able to register new account

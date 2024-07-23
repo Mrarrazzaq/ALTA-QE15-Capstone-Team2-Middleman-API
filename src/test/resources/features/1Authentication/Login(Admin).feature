@@ -1,3 +1,4 @@
+@Tests
 Feature: Login by Admin Feature
 
   Scenario: Admin able to login with valid credentials

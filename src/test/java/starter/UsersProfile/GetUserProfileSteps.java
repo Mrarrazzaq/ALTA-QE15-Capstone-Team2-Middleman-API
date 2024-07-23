@@ -57,7 +57,7 @@ public class GetUserProfileSteps {
     public void sendRequestToGetUserProfiles() {
         SerenityRest.when()
                 .get(middlemanAPI.USER_PROFILE);
-        if (SerenityRest.then().extract().statusCode() != 200) {
+        if (SerenityRest.then().extract().statusCode() != 400) {
             System.out.println("Error response: " + SerenityRest.then().extract().body().asString());
         }
     }
@@ -70,6 +70,7 @@ public class GetUserProfileSteps {
     public void setPathForUpdateUserProfileFileJson(String fileName) {
         File file = new File(Constants.REQ_BODY + fileName);
         SerenityRest.given()
+                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
                 .contentType(ContentType.JSON)
                 .body(file);
     }

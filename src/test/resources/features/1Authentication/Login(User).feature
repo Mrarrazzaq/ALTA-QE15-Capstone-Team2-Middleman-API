@@ -1,3 +1,4 @@
+@Tests
 Feature: Login by User Feature
 
   Scenario: User able to login with valid credentials

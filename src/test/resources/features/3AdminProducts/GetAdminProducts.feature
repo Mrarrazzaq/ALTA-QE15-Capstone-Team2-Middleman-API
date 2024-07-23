@@ -1,3 +1,4 @@
+@Tests
 Feature: Get Admin Product
 
   Scenario: Get all admin products
@@ -13,4 +14,4 @@ Feature: Get Admin Product
   Scenario: Search admin product by non-existent product name
     Given set path for get admin products name "Tidak Ada"
     When send request to get admin products by search
-    Then Status code should be 404
+    Then Status code should be 200

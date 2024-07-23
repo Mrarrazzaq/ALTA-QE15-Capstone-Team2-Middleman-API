@@ -1,3 +1,4 @@
+@Tests
 Feature: Update Product Feature
 
   Scenario: User able to update product with valid data

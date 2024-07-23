@@ -1,3 +1,4 @@
+@Tests
 Feature:Post Create New Carts
 
   Scenario Outline:Post create new carts with valid data
