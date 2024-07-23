@@ -1,3 +1,4 @@
+@Tests
 Feature: Update user profile
 
   Scenario: User able to update profile

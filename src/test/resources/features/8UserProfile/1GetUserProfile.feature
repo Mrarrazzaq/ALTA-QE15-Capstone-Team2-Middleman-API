@@ -1,3 +1,4 @@
+@Tests
 Feature: User able to get user profile
 
   Scenario: Get user profile with valid parameter page

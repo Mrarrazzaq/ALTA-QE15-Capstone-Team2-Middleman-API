@@ -70,7 +70,7 @@ public class GetUserProfileSteps {
     public void setPathForUpdateUserProfileFileJson(String fileName) {
         File file = new File(Constants.REQ_BODY + fileName);
         SerenityRest.given()
-                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER)
+                .header("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6ODIsIlJvbGUiOiJ1c2VyIiwiZXhwIjoxNzIxODU3MzE4fQ.muchUZpZeHroCzNmaAGGaLTzjQoW9C5CqGN9WTtOmhU")
                 .contentType(ContentType.JSON)
                 .body(file);
     }
@@ -87,7 +87,7 @@ public class GetUserProfileSteps {
     @Given("Set path for delete user")
     public void setPathForDeleteUser() {
         SerenityRest.given()
-                .header("Authorization", "Bearer " + LoginUserSteps.TOKEN_USER);
+                .header("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6ODIsIlJvbGUiOiJ1c2VyIiwiZXhwIjoxNzIxODUzNjM1fQ.63tlXUhG2uo8RMhV0PdERinT2o7dLlexppvkLhs0SQ8");
     }
 
     @And("Send request to delete user")

@@ -1,3 +1,4 @@
+@Tests
 Feature: Get Order user & admin
   #Positive
   Scenario: Get All History Order (USER) with valid data

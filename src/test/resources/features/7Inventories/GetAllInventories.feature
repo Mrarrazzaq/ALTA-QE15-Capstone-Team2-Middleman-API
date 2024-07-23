@@ -1,3 +1,4 @@
+@Tests
 Feature: Get all inventories
   #Positive User (Shop)
   Scenario: Get all form products inventory (outbound) valid data
@@ -7,7 +8,7 @@ Feature: Get all inventories
 
   #Positive User (Shop)
   Scenario: Get detail form product inventory (outbound) valid id parameter
-    Given  Get detailed product from inventory by user and set parameter to 1721104357
+    Given  Get detailed product from inventory by user and set parameter to 1721729984
     When   Send request get detailed product from inventory id
     Then   Status code should be 200
 

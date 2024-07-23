@@ -1,4 +1,4 @@
-@Tests
+
 Feature: Delete Product
 
   Scenario: User able to delete product
